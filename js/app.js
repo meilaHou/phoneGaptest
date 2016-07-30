@@ -7,7 +7,7 @@ angular.module('todo', ['ionic'])
  * from local storage, and also lets us save and load the
  * last active project index.
  */
-    .factory('Projects', function() {
+    .factory('Projects', function() {//名称不能为汉字;
         return {
             all: function() {
                 var projectString = window.localStorage['projects'];
