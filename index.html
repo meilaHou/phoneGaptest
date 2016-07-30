@@ -1,16 +1,32 @@
-
-
-<!doctype html>
-<html>
+<html ng-app="ionicApp">
 <head>
-     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <title>HTML5Paint</title>
-    <script type="text/javascript" src="cordova-2.6.0.js" charset="utf-8"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>菜鸟教程(runoob.com)</title>
+    <link href="http://www.runoob.com/static/ionic/css/ionic.min.css" rel="stylesheet">
+    <script src="http://www.runoob.com/static/ionic/js/ionic.bundle.min.js"></script>
     <script type="text/javascript">
-        alert("HELLO CORDOVA");
-    </script></p>
-<p></head>
-<body></p>
-<p><h1>HTML5Paint</h1>
+        angular.module('ionicApp', ['ionic'])
+
+                .controller('MyCtrl', function($scope) {
+
+                });
+    </script>
+    <style>
+        body {
+            cursor: url('http://www.runoob.com/static/img/finger.png'), auto;
+        }
+    </style>
+</head>
+<body ng-controller="MyCtrl">
+
+<ion-header-bar class="bar-positive">
+    <h1 class="title">Hello World!</h1>
+</ion-header-bar>
+
+<ion-content>
+    <p>我的第一个 ionic 应用。</p>
+</ion-content>
+
 </body>
 </html>
