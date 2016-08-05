@@ -1,84 +1,179 @@
-<html>
+<html ng-app="ionicApp">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>菜鸟教程(runoob.com)</title>
+    <title>每月账单</title>
     <link href="ionic/css/ionic.min.css" rel="stylesheet">
     <script src="ionic/js/ionic.bundle.min.js"></script>
+
+    <script type="text/javascript">
+        angular.module('ionicApp', ['ionic'])
+
+                .config(function($stateProvider, $urlRouterProvider) {
+
+                    $stateProvider
+                            .state('tabs', {
+                                url: "/tab",
+                                abstract: true,
+                                templateUrl: "templates/tabs.html"
+                            })
+                            .state('tabs.home', {
+                                url: "/home",
+                                views: {
+                                    'home-tab': {
+                                        templateUrl: "templates/home.html",
+                                        controller: 'HomeTabCtrl'
+                                    }
+                                }
+                            })
+
+                            .state('tabs.about', {
+                                url: "/about",
+                                views: {
+                                    'about-tab': {
+                                        templateUrl: "templates/about.html"
+                                    }
+                                }
+                            })
+
+
+                    $urlRouterProvider.otherwise("/tab/home");
+
+                })
+
+                .controller('HomeTabCtrl', function($scope) {
+                    console.log('HomeTabCtrl');
+                });
+    </script>
+
 </head>
-<body ng-app="todo" ng-controller="TodoCtrl">
-<ion-side-menus>
+<body>
 
-    <!-- 中心内容 -->
-    <ion-side-menu-content>
-        <ion-header-bar class="bar-dark">
-            <button class="button button-icon" ng-click="toggleProjects()">
-                <i class="icon ion-navicon"></i>
-            </button>
-            <h1 class="title">{{activeProject.title}}</h1>
-            <!-- 新增按钮 -->
-            <button class="button button-icon" ng-click="newTask()">
-                <i class="icon ion-compose"></i>
-            </button>
-        </ion-header-bar>
-        <ion-content scroll="false">
-            <ion-list>
-                <ion-item ng-repeat="task in activeProject.tasks">
-                    {{task.title}}
-                </ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-side-menu-content>
 
-    <!-- 左边栏 -->
-    <ion-side-menu side="left">
-        <ion-header-bar class="bar-dark">
-            <h1 class="title">Projects</h1>
-            <button class="button button-icon ion-plus" ng-click="newProject()">
-            </button>
-        </ion-header-bar>
-        <ion-content scroll="false">
-            <ion-list>
-                <ion-item ng-repeat="project in projects" ng-click="selectProject(project, $index)" ng-class="{active: activeProject == project}">
-                    {{project.title}}
-                </ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-side-menu>
 
-</ion-side-menus>
 
-<!--  新增页面 -->
-<script id="new-task.html" type="text/ng-template">
 
-    <div class="modal">
+<ion-nav-bar class="bar-positive">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+</ion-nav-bar>
 
-        <!-- Modal header bar -->
-        <ion-header-bar class="bar-secondary">
-            <h1 class="title">New Task</h1>
-            <button class="button button-clear button-positive" ng-click="closeNewTask()">Cancel</button>
-        </ion-header-bar>
+<ion-nav-view></ion-nav-view>
 
-        <!-- Modal content area -->
-        <ion-content>
 
-            <form ng-submit="createTask(task)">
+<script id="templates/tabs.html" type="text/ng-template">
+    <ion-tabs class="tabs-icon-top tabs-positive">
+
+        <ion-tab title="Home" icon="ion-home" href="#/tab/home">
+            <ion-nav-view name="home-tab"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="申请" icon="ion-ios-information" href="#/tab/about">
+            <ion-nav-view name="about-tab"></ion-nav-view>
+        </ion-tab>
+
+
+    </ion-tabs>
+</script>
+
+<script id="templates/home.html" type="text/ng-template">
+    <ion-view view-title="Home">
+        <ion-content class="padding">
+
+            <div class="content  padding">
+
                 <div class="list">
                     <label class="item item-input">
-                        <input type="text" placeholder="What do you need to do?" ng-model="task.title">
+                        <span class="input-label">消费：</span>
+                        <input type="text" id="xiaofei">
                     </label>
                 </div>
-                <div class="padding">
-                    <button type="submit" class="button button-block button-positive">Create Task</button>
+                <div class="">
+                    <label class="item item-input">
+                        <span class="input-label">收入1：</span>
+                        <input type="text" id="shou1">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">收入2：</span>
+                        <input type="text" id="shou2">
+                    </label>
+
                 </div>
-            </form>
+                <div class="padding">
+                    <a class="button  button-block button-positive" id="start_btn"> 提交</a>
+
+                </div>
+                <div id="result">
+                    <label class="item item-input">
+                        <span class="input-label" >剩余1：</span>
+                        <input type="text" id="sheng1">
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label" >剩余2：</span>
+                        <input type="text" id="sheng2">
+                    </label>
+                </div>
+
+                <div class="padding">
+                    <a class="button  button-block button-positive" id="jilu_btn"> 查看记录</a>
+                </div>
+
+            </div>
+        </ion-content>
+    </ion-view>
+</script>
+
+
+<script id="templates/about.html" type="text/ng-template">
+    <ion-view view-title="About">
+        <ion-content class="padding">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">申请事项：</span>
+                    <input type="text" id="">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">申请金额：</span>
+                    <input type="text" >
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">申请日期：</span>
+                    <input type="text" >
+                </label>
+                <label class="item item-input">
+                    <textarea placeholder="申请说明：" style="height: 100px"></textarea>
+                </label>
+            </div>
+
+            <div class="row">
+                <div class="col col-50">
+                    <label class="item item-radio">
+                        <input type="radio" name="group" value="yes" checked="checked">
+                        <div class="item-content">
+                            同意
+                        </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                </div>
+                <div class="col col-50">
+                    <label class="item item-radio">
+                        <input type="radio" name="group" value="no">
+                        <div class="item-content">
+                            不同意
+                        </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="padding">
+                <a class="button  button-block button-positive" id="look_btn"> 查看申请列表</a>
+            </div>
 
         </ion-content>
-
-    </div>
-
+    </ion-view>
 </script>
-<script src="js/app.js"></script>
-<script src="cordova.js"></script>
+
+
 </body>
+<script src="js/PercentAccountStrateay.js"></script>
 </html>
