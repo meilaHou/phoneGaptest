@@ -4,8 +4,8 @@ var Account = function  (exTotal, ActorList){
 
 	sheng1 = exTotal*(ActorList[0]/(ActorList[0]+ActorList[1]));
 	sheng2 = exTotal*(ActorList[1]/(ActorList[0]+ActorList[1]));
-	document.getElementById("sheng1").value = sheng1+" + "+(ActorList[0] - sheng1);
-	document.getElementById("sheng2").value = sheng2+" + "+(ActorList[1] - sheng2);
+	document.getElementById("sheng1").value = sheng1.toFixed(2)+" + "+(ActorList[0] - sheng1).toFixed(2);
+	document.getElementById("sheng2").value = sheng2.toFixed(2)+" + "+(ActorList[1] - sheng2).toFixed(2);
 };
 var shou1;
 var shou2;

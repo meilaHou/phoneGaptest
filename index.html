@@ -6,45 +6,8 @@
     <link href="ionic/css/ionic.min.css" rel="stylesheet">
     <script src="ionic/js/ionic.bundle.min.js"></script>
 
-    <script type="text/javascript">
-        angular.module('ionicApp', ['ionic'])
-
-                .config(function($stateProvider, $urlRouterProvider) {
-
-                    $stateProvider
-                            .state('tabs', {
-                                url: "/tab",
-                                abstract: true,
-                                templateUrl: "templates/tabs.html"
-                            })
-                            .state('tabs.home', {
-                                url: "/home",
-                                views: {
-                                    'home-tab': {
-                                        templateUrl: "templates/home.html",
-                                        controller: 'HomeTabCtrl'
-                                    }
-                                }
-                            })
-
-                            .state('tabs.about', {
-                                url: "/about",
-                                views: {
-                                    'about-tab': {
-                                        templateUrl: "templates/about.html"
-                                    }
-                                }
-                            })
-
-
-                    $urlRouterProvider.otherwise("/tab/home");
-
-                })
-
-                .controller('HomeTabCtrl', function($scope) {
-                    console.log('HomeTabCtrl');
-                });
-    </script>
+    <script type="text/javascript" src="js/app.js">
+     </script>
 
 </head>
 <body>
@@ -115,7 +78,12 @@
                 </div>
 
                 <div class="padding">
-                    <a class="button  button-block button-positive" id="jilu_btn"> 查看记录</a>
+                    <!--
+                    <p> 换行
+                    button-block 块状显示
+                    -->
+                    <a class="button   button-positive" id="jilu_btn"> 查看记录</a>
+                   <a class="button   button-positive" id="baocun_btn"> 保存记录</a>
                 </div>
 
             </div>
@@ -166,14 +134,59 @@
                 </div>
             </div>
             <div class="padding">
-                <a class="button  button-block button-positive" id="look_btn"> 查看申请列表</a>
+                <a class="button icon icon-right ion-chevron-right" href="#/tab/navstack">查看申请列表</a>
             </div>
 
         </ion-content>
     </ion-view>
 </script>
 
+<script id="templates/nav-stack.html" type="text/ng-template">
 
+    <ion-view view-title="申请列表">
+            <ion-nav-back-button class="button-clear">
+                <i class="ion-arrow-left-c"></i> 后退
+            </ion-nav-back-button>
+        <ion-content class="padding">
+            <div class="list">
+                <div class="padding">
+                    <a class="button icon icon-left ion-chevron-left" href="#/tab/about">申请事项申请事项申请事项申请事项申请事项申请事项申请事项申请事项：</a>
+                </div>
+                <div class="padding">
+                    <a class="button icon icon-left ion-chevron-left" href="#/tab/about">申请事项申请事项申请事项申请事项申请事项申请事项申请事项申请事项：</a>
+                </div> <div class="padding">
+                <a class="button icon icon-left ion-chevron-left" href="#/tab/about">申请事项申请事项申请事项申请事项申请事项申请事项申请事项申请事项：</a>
+            </div> <div class="padding">
+                <a class="button icon icon-left ion-chevron-left" href="#/tab/about">申请事项申请事项申请事项申请事项申请事项申请事项申请事项申请事项：</a>
+            </div>
+
+                </div>
+        </ion-content>
+    </ion-view>
+</script>
+<script id="templates/nav-stackShow.html" type="text/ng-template">
+    <ion-view view-title="申请事项">
+        <ion-content class="padding">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">申请事项：</span>
+                    <input type="text">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">申请金额：</span>
+                    <input type="text" >
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">申请日期：</span>
+                    <input type="text" >
+                </label>
+                <label class="item item-input">
+                    <textarea placeholder="申请说明：" style="height: 100px"></textarea>
+                </label>
+            </div>
+            </ion-content>
+        </ion-view>
+</script>
 </body>
 <script src="js/PercentAccountStrateay.js"></script>
 </html>
