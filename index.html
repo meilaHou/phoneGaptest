@@ -1,4 +1,4 @@
-<html ng-app="ionicApp">
+<html ng-app="ionicApp"  >
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -6,11 +6,10 @@
     <link href="ionic/css/ionic.min.css" rel="stylesheet">
     <script src="ionic/js/ionic.bundle.min.js"></script>
 
-    <script type="text/javascript" src="js/app.js">
-     </script>
+
 
 </head>
-<body>
+<body ng-controller="bodycontrollers">
 
 
 
@@ -40,7 +39,7 @@
 </script>
 
 <script id="templates/home.html" type="text/ng-template">
-    <ion-view view-title="Home">
+    <ion-view view-title="Home" ng-controller="HomeTabCtrl">
         <ion-content class="padding">
 
             <div class="content  padding">
@@ -93,23 +92,23 @@
 
 
 <script id="templates/about.html" type="text/ng-template">
-    <ion-view view-title="About">
+    <ion-view view-title="About" ng-controller="shenqingControl">
         <ion-content class="padding">
             <div class="list">
                 <label class="item item-input">
                     <span class="input-label">申请事项：</span>
-                    <input type="text" id="">
+                    <input type="text" id="sq_title">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">申请金额：</span>
-                    <input type="text" >
+                    <input type="text" id="sq_jiner">
                 </label>
                 <label class="item item-input">
                     <span class="input-label">申请日期：</span>
-                    <input type="text" >
+                    <input type="text" id="sq_date">
                 </label>
                 <label class="item item-input">
-                    <textarea placeholder="申请说明：" style="height: 100px"></textarea>
+                    <textarea placeholder="申请说明：" style="height: 100px" id="sq_shuoming"></textarea>
                 </label>
             </div>
 
@@ -134,6 +133,7 @@
                 </div>
             </div>
             <div class="padding">
+                <a class="button   button-positive" id="baocun2_btn"> 保存记录</a>
                 <a class="button icon icon-right ion-chevron-right" href="#/tab/navstack">查看申请列表</a>
             </div>
 
@@ -143,28 +143,21 @@
 
 <script id="templates/nav-stack.html" type="text/ng-template">
 
-    <ion-view view-title="申请列表">
+    <ion-view view-title="申请列表" ng-controller="sq_list">
             <ion-nav-back-button class="button-clear">
                 <i class="ion-arrow-left-c"></i> 后退
             </ion-nav-back-button>
         <ion-content class="padding">
             <div class="list">
-                <div class="padding">
-                    <a class="button icon icon-left ion-chevron-left" href="#/tab/about">申请事项申请事项申请事项申请事项申请事项申请事项申请事项申请事项：</a>
+                <div class="padding"  ng-repeat="task in tasks">
+                    <a class="button icon icon-left ion-chevron-left" href="#/tab/stackShow" >{{task.sq_title}}</a>
                 </div>
-                <div class="padding">
-                    <a class="button icon icon-left ion-chevron-left" href="#/tab/about">申请事项申请事项申请事项申请事项申请事项申请事项申请事项申请事项：</a>
-                </div> <div class="padding">
-                <a class="button icon icon-left ion-chevron-left" href="#/tab/about">申请事项申请事项申请事项申请事项申请事项申请事项申请事项申请事项：</a>
-            </div> <div class="padding">
-                <a class="button icon icon-left ion-chevron-left" href="#/tab/about">申请事项申请事项申请事项申请事项申请事项申请事项申请事项申请事项：</a>
-            </div>
 
                 </div>
         </ion-content>
     </ion-view>
 </script>
-<script id="templates/nav-stackShow.html" type="text/ng-template">
+<script id="templates/nav-stackShow.html" type="text/ng-template" ng-controller="stackShowControl">
     <ion-view view-title="申请事项">
         <ion-content class="padding">
             <div class="list">
@@ -188,5 +181,10 @@
         </ion-view>
 </script>
 </body>
+<script src="js/localstage.js"></script>
+<script type="text/javascript" src="js/app.js">
+</script>
+
 <script src="js/PercentAccountStrateay.js"></script>
+
 </html>

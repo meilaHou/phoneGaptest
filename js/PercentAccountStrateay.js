@@ -12,9 +12,9 @@ var shou2;
 var start_btn;
 window.onload = function() {
    this.shou1 = document.getElementById("shou1");
-	this.shou1.value  = "";
+	this.shou1.value  = "16000";
 	this.shou2 = document.getElementById("shou2");
-	this.shou2.value  = "fff";
+	this.shou2.value  = "15000";
 	this.start_btn = document.getElementById("start_btn");
 	this.start_btn.onclick = function() {
 
