@@ -111,31 +111,27 @@
                     <textarea placeholder="申请说明：" style="height: 100px" id="sq_shuoming"></textarea>
                 </label>
             </div>
+            <ion-list >
+                <div class="row">
+                    <div class="col col-50">
+                        <ion-radio ng-model="choice" ng-value="yes"  onchange="serverSideChange(this)">同意</ion-radio>
+                        </label>
+                    </div>
+                    <div class="col col-50">
+                        <ion-radio ng-model="choice" ng-value="no" onchange="serverSideChange(this)" >不同意</ion-radio>
+                        </label>
+                    </div>
+                </div>
 
-            <div class="row">
-                <div class="col col-50">
-                    <label class="item item-radio">
-                        <input type="radio" name="group" value="yes" checked="checked">
-                        <div class="item-content">
-                            同意
-                        </div>
-                        <i class="radio-icon ion-checkmark"></i>
-                    </label>
-                </div>
-                <div class="col col-50">
-                    <label class="item item-radio">
-                        <input type="radio" name="group" value="no">
-                        <div class="item-content">
-                            不同意
-                        </div>
-                        <i class="radio-icon ion-checkmark"></i>
-                    </label>
-                </div>
-            </div>
+
+            </ion-list>
+
             <div class="padding">
                 <a class="button   button-positive" id="baocun2_btn"> 保存记录</a>
                 <a class="button icon icon-right ion-chevron-right" href="#/tab/navstack">查看申请列表</a>
             </div>
+
+
 
         </ion-content>
     </ion-view>
@@ -149,32 +145,32 @@
             </ion-nav-back-button>
         <ion-content class="padding">
             <div class="list">
-                <div class="padding"  ng-repeat="task in tasks">
-                    <a class="button icon icon-left ion-chevron-left" href="#/tab/stackShow" >{{task.sq_title}}</a>
+                <div class="padding"  ng-repeat="task in tasks"><!--定义循环数组-->
+                    <a class="button button-block icon icon-left ion-chevron-left {{task.class}}" href="#/tab/stackShow" ng-click="clickdata(this)"  id="{{task.id}}">{{task.sq_title}}</a>
                 </div>
 
                 </div>
         </ion-content>
     </ion-view>
 </script>
-<script id="templates/nav-stackShow.html" type="text/ng-template" ng-controller="stackShowControl">
-    <ion-view view-title="申请事项">
+<script id="templates/nav-stackShow.html" type="text/ng-template" >
+    <ion-view view-title="申请事项" ng-controller="stackShowControl"><!--control位置要设置到这里,不然获取不到元素-->
         <ion-content class="padding">
-            <div class="list">
+            <div class="list" >
                 <label class="item item-input">
                     <span class="input-label">申请事项：</span>
-                    <input type="text">
+                    <input type="text" value="{{datas.sq_title}}" id="input1"/>
                 </label>
                 <label class="item item-input">
-                    <span class="input-label">申请金额：</span>
-                    <input type="text" >
+                    <span class="input-label" >申请金额：</span>
+                    <input type="text" id="input2" value="{{datas.sq_jiner}}"/>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">申请日期：</span>
-                    <input type="text" >
+                    <input type="text" id="input3"  value="{{datas.sq_date}}"/>
                 </label>
-                <label class="item item-input">
-                    <textarea placeholder="申请说明：" style="height: 100px"></textarea>
+                <label class="item item-input"><!-- value 和 innerHtml最好都设置(兼容性问题)-->
+                    <textarea placeholder="申请说明：" style="height: 100px" id="input4" value="{{datas.sq_shuoming}}">{{datas.sq_shuoming}}</textarea>
                 </label>
             </div>
             </ion-content>
